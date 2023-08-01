@@ -2,7 +2,10 @@ fetch('data.json')
 .then(function (res) {
     return res.json();
 })
-.then(inserScore)
+.then(function (data) {
+    inserScore(data);
+    displayAverageScore(data);
+  })
 .catch(function (err) {
     console.log(err)
 });
@@ -24,3 +27,17 @@ function inserScore(value) {
         </div>`;
     }
 }
+
+function calculateAverageScore(data) {
+    const sumScores = data.reduce((acc, item) => acc + item.score, 0);
+    return sumScores / data.length;
+  }
+  
+  function displayAverageScore(data) {
+    const averageScore = calculateAverageScore(data);
+    const resultScoreElement = document.getElementById('scoreglobal');
+    resultScoreElement.innerHTML = `
+    <p id="result-score">${averageScore.toFixed(0)}</p>
+    <p>of 100</p>`
+    ;
+  }

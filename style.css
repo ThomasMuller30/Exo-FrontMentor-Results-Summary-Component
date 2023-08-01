@@ -41,7 +41,7 @@ body {
     width: 50%;
 }
 
-.left .scoreglobal {
+.left #scoreglobal {
     display: flex;
     margin: 20px 0;
     background: linear-gradient( 
